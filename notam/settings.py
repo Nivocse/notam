@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY', 'sample_secret')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -86,9 +86,9 @@ WSGI_APPLICATION = 'notam.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
+        'NAME': env('DB_NAME', 'sample_db'),
+        'USER': env('DB_USER', 'sample_user'),
+        'PASSWORD': env('DB_PASSWORD', 'sample_pw'),
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -149,10 +149,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER', 'sample_host_user')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', 'sample_host_pw')
 
-API_KEY = env('API_KEY')
+API_KEY = env('API_KEY', 'sample_api_key')
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
