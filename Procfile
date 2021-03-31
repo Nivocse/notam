@@ -1,1 +1,1 @@
-web: gunicorn locallibrary.wsgi --log-file - 
+web: gunicorn notam.wsgi --log-file - 
