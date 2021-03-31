@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="home-container">
+    <div class="home-card home-select">
+      <p>Process new notams</p>
+      <a href="{% url 'notam_select' %}">
+        <span class="link-spanner"></span>
+      </a>
+    </div>
+    <div class="home-card home-list">
+      <p>List notams</p>
+      <a href="{% url 'notam_list' %}">
+        <span class="link-spanner"></span>
+      </a>
+    </div>
+  </div>
+
+{% endblock %}

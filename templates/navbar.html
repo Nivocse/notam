@@ -1,0 +1,14 @@
+<header class="site-header">
+  <a href="{% url 'home' %}" class="brand"><button>Home</button></a>
+  <nav class="nav">
+    {% if user.is_authenticated %}
+      <span>{{ user.username }}</span>
+      <a href="{% url 'logout' %}"><button>Log Out</button></a>
+    {% else %}
+      <a href="{% url 'login' %}"><button>Log In</button></a>
+      <a href="{% url 'signup' %}"><button>Signup</button></a>
+
+    {% endif %}
+
+  </nav>
+</header>

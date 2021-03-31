@@ -1,0 +1,376 @@
+*,
+*::before,
+*::after { 
+  box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body{
+    width: 100%;
+    margin: 0.5rem auto;
+}
+
+label {
+    float: left;
+    text-align: right;
+    padding: 1rem;
+}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+  
+/* HOME */
+
+.home-container {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+height: 100vh;
+width: 100%;
+}
+
+.home-card {
+width: 40%;
+height: 60%;
+margin: 0 1rem;
+background-position: center center;
+background-repeat: no-repeat;
+background-size: cover;
+overflow: hidden;
+position: relative;
+filter: contrast(70%);
+display:flex;
+border-radius: 0.25rem;
+box-shadow: 0 20px 40px -14px rgba(0,0,0,1);
+}
+
+.home-card:hover {
+    filter: contrast(100%);
+}
+
+.link-spanner{
+    position:absolute; 
+    width:100%;
+    height:100%;
+    top:0;
+    left: 0;
+    z-index: 1;
+}
+
+.home-card p {
+    align-self: flex-end;
+    color: whitesmoke;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+
+.home-select {
+    background: url('../images/window.jpg');
+}  
+
+.home-list {
+    background: url('../images/deck.jpg');
+}
+
+
+
+/* NAVBAR */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+/* LOGIN */
+
+.login-page {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* SIGNUP */
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.signup-form .helptext,
+.signup-form li,
+.signup-form ul {
+    display: none;
+    margin: 0;
+}
+
+/* SELECT */
+
+.select-container {
+    display: flex;
+    justify-content: center;
+}
+
+.select-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 2rem;
+}
+
+/* NOTAMS */
+
+img {
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.notam-links {
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem auto;
+}
+
+.form-inline {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    margin-top: 2rem;
+  }
+  
+.form-search {
+    margin-top: 1rem;
+    display: block;
+    width: 100%;
+}
+
+.form-dates {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+#valid-from { grid-area: 1 / 1 / 2 / 2; padding-left: 0}
+#filter-start { grid-area: 1 / 2 / 2 / 3; }
+#valid-till { grid-area: 2 / 1 / 3 / 2; padding-left: 0}
+#filter-end { grid-area: 2 / 2 / 3 / 3; }
+
+.form-buttons {
+    margin-top: 1rem;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.notam-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.notam-item {
+    display:flex;
+    padding: 1rem;
+}
+
+.notam-card {
+    border-radius: 0.25rem;
+    box-shadow: 0 20px 40px -14px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+}
+
+.notam-card:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.notam-image {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    overflow: hidden;
+    position: relative;
+    transition: filter 0.5s cubic-bezier(.43,.41,.22,.91);
+}
+
+.notam-image span {
+    position: absolute;
+    top: 0;
+    padding: 0 0.5rem;
+}
+
+.notam-airport {
+    left: 0;    
+}
+
+.notam-qcode {
+    right: 0;
+}
+
+.notam-image::before {
+    content: "";
+    display: block;
+    padding-top: 56.25%; 
+}
+
+
+.notam-image-mrlc {
+    background: url('../images/runway.jpg');
+}
+
+.notam-image-acah,
+.notam-image-aeca,
+.notam-image-atca,
+.notam-image-spah,
+.notam-image-stah {
+    background: url('../images/ats.jpg');
+}
+
+.notam-image-faah,
+.notam-image-falc {
+    background: url('../images/airport.jpg');
+}
+
+.notam-image-icas,
+.notam-image-icct,
+.notam-image-igas,
+.notam-image-ilas,
+.notam-image-isas,
+.notam-image-iuas,
+.notam-image-piau {
+    background: url('../images/landing.jpg');
+}
+
+
+.notam-image-fiau {
+    background: url('../images/deicing.jpg');
+    color: whitesmoke;
+}
+
+
+.notam-text {
+    flex: 1 1 auto;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+}
+
+.notam-comment {
+    padding: 0.5rem;
+}
+
+
+@media(min-width: 40rem) {
+    .notam-item {
+        width: 50%;
+    }
+
+    .notam-image::before {
+        padding-top: 66.6%; 
+    }
+}
+
+@media(min-width: 56rem) {
+    .notam-item {
+        width: 33.3333%;
+    }
+  }
+
+
+.modal-container {
+position: fixed;
+top: 0;
+left: 0;
+z-index: 10;
+
+display: none;
+justify-content: center;
+align-items: center;
+
+width: 100%;
+height: 100%;
+}
+
+.modal-container:target {
+    display: flex;
+    justify-content: center;
+}
+
+.notam-details {
+    width: 60rem;
+    padding: 2rem 2rem;
+    border-radius: .8rem;
+  
+    background: whitesmoke;
+    position: relative;
+  
+    overflow: hidden;
+  
+}
+
+.modal-link-close {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid black;
+    border-radius: 100rem;
+
+    color: inherit;
+    font-size: 2.2rem;
+
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: .2s;
+}
+
+.modal-link-close::before {
+    content: '×';
+}
+
+:target:before {
+    content: "";
+    display: block;
+    height: 10rem;
+    margin: -10rem 0 0;
+}
+
+/* Update Form */
+.update-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 2rem auto;
+}
+
+/* Delete Confirm */
+
+.delete-confirm {
+    margin: 2rem auto;
+}

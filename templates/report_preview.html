@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+
+{% block title %}
+<title>Report</title>
+{% endblock %}
+
+
+{% block content %}
+    <form action="." method="POST">
+        {% csrf_token %}
+        <input style="display:none;" type="text" name="message" value="{{ message|linebreaksbr }}">
+        <input type="submit" value="Send report">
+    </form>
+    
+    <blockquote>{{ message|linebreaksbr }}</blockquote>
+{% endblock %}

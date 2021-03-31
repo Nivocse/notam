@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Notams</title>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="notam-links">
+    <a href="{% url 'notam_create' %}" ><button>Add new Notam</button></a>
+    <a href="{% url 'call' %}" ><button>Process new Notams</button></a>
+    <a href="{% url 'cleanup' %}" ><button>Cleanup</button></a>
+    <a href="{% url 'verbose_report' %}" ><button>Generate report</button></a>
+</div>
+
+<div class="form-container">
+    <form class="form-inline" onsubmit="filtering()">
+        <label for="filter-airport">Airports: </label>
+        <select name="filter-airport" id="filter-airport" multiple>
+            {% regroup object_list|dictsort:"airport" by airport as airport_list %}
+            {% for airport in airport_list %}
+                <option value="{{ airport.grouper }}">{{ airport.grouper }}</option>
+            {% endfor %}
+        </select>
+        
+        <label for="filter-qcode">Qcodes:</label>
+        <select name="filter-qcode" id="filter-qcode" multiple>
+            {% regroup object_list|dictsort:"qcode" by qcode as qcode_list %}
+            {% for qcode in qcode_list %}
+                <option value="{{ qcode.grouper }}">{{ qcode.grouper }}</option>
+            {% endfor %}
+        </select>
+
+        <span class="form-dates">
+        <label for="filter-start" id="valid-from">Valid from:</label>
+        <input type="date" name="filter-start" id="filter-start">
+        <label for="filter-end" id="valid-till">Valid till:</label>
+        <input type="date" name="filter-end" id="filter-end">
+        </span>
+        <span class="form-buttons">
+        <input type="submit" value="Filter">
+        <input type="reset" value="Reset" onclick="setTimeout(resetFilter, 500)">
+        </span>
+    </form>
+
+    <form class="form-search" action="">
+        <input type="search" name="filter-keyword" id="filter-keyword" onkeyup="searching()" placeholder="Search for keywords">
+    </form>
+</div>
+
+<ul class="notam-list">
+    {% for notam in object_list %}
+    <li class="notam-item">
+        <div class="notam-card">
+            <div class="notam-image notam-image-{{ notam.qcode|lower }}">
+                <a href="#modal-container-{{ notam.id }}" id="modal-link-{{ notam.id }}">
+                    <span class="link-spanner"></span>
+                </a>
+                <span class="notam-airport">{{ notam.airport }}</span>
+                <span class="notam-qcode">{{ notam.qcode }}</span>
+            </div>
+            <div class="notam-text">
+                <h4 class="notam-comment">{{ notam.comment }}</h4>
+            </div>
+        </div>
+        <div class="modal-container" id="modal-container-{{ notam.id }}">
+            <div class="notam-details">
+                <h1>{{ notam.airport }}: {{ notam.comment }}</h1>
+                <p class="notam-message">Full message: {{ notam.message }}</p>
+                <p class="notam-startdate">Valid from: {{ notam.startdate }}</p>
+                <p class="notam-enddate">Valid till: {{ notam.enddate }}</p>
+                <a href="{% url 'notam_update' notam.pk %}" ><button>Update &rarr;</button></a>
+                <a href="{% url 'notam_delete' notam.pk %}"><button>Delete &rarr;</button></a>
+                <a href="#modal-link-{{ notam.id }}" class="modal-link-close"></a>
+            </div>
+        </div>
+    </li>    
+    {% endfor %}
+</ul>
+
+<script>
+    function filtering() {
+        event.preventDefault()
+        const data = new FormData(document.querySelector("form"))
+        const filterAirport = data.getAll("filter-airport")
+        const filterQcode = data.getAll("filter-qcode")
+        const filterStart = data.get("filter-start")
+        const filterEnd = data.get("filter-end")
+
+        const notams = document.querySelectorAll(".notam-item");
+
+        for (i=0;i<notams.length;i++) {
+            airport = notams[i].querySelector(".notam-airport").innerText
+            qcode = notams[i].querySelector(".notam-qcode").innerText
+            startdate = notams[i].querySelector(".notam-startdate").innerText
+            enddate = notams[i].querySelector(".notam-enddate").innerText
+            if (
+                (!filterAirport.length || filterAirport.includes(airport)) &&
+                (!filterQcode.length || filterQcode.includes(qcode)) &&
+                (!filterStart || Date.parse(filterStart) < Date.parse(enddate.slice(0, -4))) &&
+                (!filterEnd || Date.parse(filterEnd) > Date.parse(startdate.slice(0, -4)))
+            ) {
+                notams[i].style.display = ""
+            } else {
+                notams[i].style.display = "none"
+            }
+        }
+    };
+
+    function searching() {
+        const keyword = document.getElementById("filter-keyword").value.toUpperCase();
+        const notams = document.querySelectorAll(".notam-item");
+
+        for (i=0;i<notams.length;i++) {
+            notam = notams[i].querySelector(".notam-message")
+            text = notam.innerText
+            if (text.indexOf(keyword) > -1) {
+                notams[i].style.display = "";
+            } else {
+                notams[i].style.display = "none";
+            }
+        }
+    } 
+
+    function resetFilter() {
+        const button = document.querySelectorAll('input[type=submit]');
+        button[0].click();
+    }
+</script>
+{% endblock %}

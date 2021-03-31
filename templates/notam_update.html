@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Update Notam</title>
+{% endblock %}
+
+
+{% block content %}
+
+<form action="{% url 'notam_update' notam.pk %}" method="post" class="update-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update Notam">
+</form>
+{% endblock %}
