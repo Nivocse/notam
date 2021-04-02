@@ -1,1 +1,1 @@
-web: gunicorn notam.wsgi --log-file - 
+web: python notam/manage.py collectstatic --noinput; gunicorn notam.wsgi --log-file - 
