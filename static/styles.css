@@ -76,7 +76,7 @@ box-shadow: 0 20px 40px -14px rgba(0,0,0,1);
 }  
 
 .home-list {
-    background: url('../images/deck.jpg');
+    background: url('images/deck.jpg');
 }
 
 
@@ -237,7 +237,7 @@ img {
 
 
 .notam-image-mrlc {
-    background: url('../images/runway.jpg');
+    background: url('images/runway.jpg');
 }
 
 .notam-image-acah,
@@ -245,12 +245,12 @@ img {
 .notam-image-atca,
 .notam-image-spah,
 .notam-image-stah {
-    background: url('../images/ats.jpg');
+    background: url('images/ats.jpg');
 }
 
 .notam-image-faah,
 .notam-image-falc {
-    background: url('../images/airport.jpg');
+    background: url('images/airport.jpg');
 }
 
 .notam-image-icas,
@@ -260,12 +260,12 @@ img {
 .notam-image-isas,
 .notam-image-iuas,
 .notam-image-piau {
-    background: url('../images/landing.jpg');
+    background: url('images/landing.jpg');
 }
 
 
 .notam-image-fiau {
-    background: url('../images/deicing.jpg');
+    background: url('images/deicing.jpg');
     color: whitesmoke;
 }
 
